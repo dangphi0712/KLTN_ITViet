@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	.dropdown-menu {
+		@apply grid grid-cols-4 gap-y-4 gap-x-6 absolute right-0 top-0 mt-2 text-center translate-x-1/2 bg-white p-4 rounded-[18px] text-sm opacity-0 pointer-events-none duration-150 group-hover:opacity-100 group-hover:pointer-events-auto group-hover:top-8 before:absolute before:h-3 before:w-16 before:right-1/2 before:translate-x-1/2 before:-top-3 group-hover:text-black;
+	}
+	.boxShadowSupport {
+		box-shadow: 0 9px 32px rgba(0, 0, 0, 0.1);
+	}
+
+	.boxShadow {
+		box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+			rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+			rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+	}
+
+	.input-focus {
+		border: none;
+		border-bottom: 1px solid #ccc;
+	}
+	.input-focus:focus-visible {
+		border-bottom: 2px solid #06c;
+	}
+
+	input[type='number'] {
+		-webkit-appearance: textfield;
+		-moz-appearance: textfield;
+		appearance: textfield;
+	}
+	input[type='number']::-webkit-inner-spin-button,
+	input[type='number']::-webkit-outer-spin-button {
+		-webkit-appearance: none;
+	}
+
+	@keyframes btnAnnimate {
+		0% {
+			transform: scale(1);
+		}
+		100% {
+			transform: scale(1.05);
+		}
+	}
+	.btnAction {
+		animation: btnAnnimate 0.5s infinite;
+		transition: all 0.2s ease-out;
+	}
+
+	.ant-select-selector {
+		border: none !important;
+		padding: 0 !important;
+	}
+}
