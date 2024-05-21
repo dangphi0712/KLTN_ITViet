@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { mobileDropMenus, navItemTypes, navItems } from '../constants';
 import { useNavigate } from 'react-router-dom';
 import config from '../config';
+import logo from '../assets/images/logo.png'
 
 const Navbar = () => {
 	const [displayBgColor, setDisplayBgColor] = useState(false);
@@ -45,20 +46,18 @@ const Navbar = () => {
 				</button>
 
 				<div
-					className={`fixed inset-0 duration-300 ${
-						openMenu
+					className={`fixed inset-0 duration-300 ${openMenu
 							? 'pointer-events-auto bg-black/60 overflow-y-auto overflow-x-hidden'
 							: 'pointer-events-none'
-					}`}
+						}`}
 					onClick={e => {
 						if (e.target !== e.currentTarget) return;
 						setOpenMenu(false);
 					}}
 				>
 					<div
-						className={`absolute min-h-screen right-0 w-full bg-white font-bold text-xl duration-300 overflow-auto z-10  ${
-							openMenu ? 'translate-x-0' : 'translate-x-full '
-						}`}
+						className={`absolute min-h-screen right-0 w-full bg-white font-bold text-xl duration-300 overflow-auto z-10  ${openMenu ? 'translate-x-0' : 'translate-x-full '
+							}`}
 					>
 						<Icon
 							icon='ic:round-close'
@@ -70,11 +69,10 @@ const Navbar = () => {
 						{navItems.map((item, idx) => (
 							<div key={idx}>
 								<div
-									className={`m-3 flex gap-2 items-center ${
-										menuType === item.key
+									className={`m-3 flex gap-2 items-center ${menuType === item.key
 											? 'text-primary'
 											: ''
-									}`}
+										}`}
 									onClick={() => handleOpenSubMenu(item.key)}
 								>
 									<span className='hover:text-primary cursor-pointer flex flex-col py-2'>
@@ -85,11 +83,10 @@ const Navbar = () => {
 										<Icon
 											icon='icon-park-outline:right'
 											height={22}
-											className={`duration-300 mt-[6px] ${
-												menuType === item.key
+											className={`duration-300 mt-[6px] ${menuType === item.key
 													? 'rotate-90'
 													: ''
-											}`}
+												}`}
 										/>
 									)}
 								</div>
@@ -135,9 +132,8 @@ const Navbar = () => {
 	return (
 		<>
 			<header
-				className={`${
-					displayBgColor ? 'bg-white' : 'bg-transparent'
-				} py-3 fixed inset-x-0 duration-300 z-40`}
+				className={`${displayBgColor ? 'bg-white' : 'bg-transparent'
+					} py-3 fixed inset-x-0 duration-300 z-40`}
 			>
 				<nav className='max-w-7xl mx-auto flex justify-between items-center px-4'>
 					<div
@@ -145,7 +141,7 @@ const Navbar = () => {
 						onClick={() => navigate(config.routes.home)}
 					>
 						<img
-							src='../src/assets/images/logo.png'
+							src={logo}
 							alt='logo'
 							width={45}
 							height={45}

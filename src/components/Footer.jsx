@@ -1,5 +1,5 @@
 import { Icon } from '@iconify/react';
-
+import logo from "../assets/images/logo.png"
 const Footer = () => {
 	return (
 		<footer>
@@ -11,7 +11,7 @@ const Footer = () => {
 								<li>
 									<div className='cursor-pointer flex items-center gap-1'>
 										<img
-											src='../src/assets/images/logo.png'
+											src={logo}
 											alt='logo'
 											width={35}
 											height={35}

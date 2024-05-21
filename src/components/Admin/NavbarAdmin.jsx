@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import config from '../../config';
 import * as UserService from '../../services/user';
 import { resetUser } from '../../redux/Slice/userSlice';
-
+import logo from '../../assets/images/logo.png'
 const NavbarAdmin = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -29,7 +29,7 @@ const NavbarAdmin = () => {
 						onClick={() => navigate(config.routes.home)}
 					>
 						<img
-							src='../src/assets/images/logo.png'
+							src={logo}
 							alt=''
 							width={30}
 							height={30}
