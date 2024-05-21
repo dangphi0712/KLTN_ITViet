@@ -6,7 +6,8 @@ export default defineConfig({
 	server: {
 		proxy: {
 			'/api': {
-				target: 'http://localhost:8000',
+				// target: 'http://localhost:8000',
+				target: 'https://kltn-itviet-be.onrender.com',
 				changeOrigin: true,
 				rewrite: path => path.replace(/^\/api/, '')
 			}
