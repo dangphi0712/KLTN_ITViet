@@ -21,16 +21,24 @@ const RegisterPage = () => {
 	const [formComplete, setFormComplete] = useState(false);
 	const navigate = useNavigate();
 	const handleSubmit = async data => {
+		const validName = /\d/;
+		if (validName.test(fullName)) {
+			message.warning('Họ tên không được chứa số');
+			return;
+		}
 		if (!email || !password || !fullName) {
 			message.warning('Vui lòng nhập đầy đủ các trường');
+			return;
 		}
 		if (password !== confirmPassword) {
 			message.warning('Password không trùng khớp');
+			return;
 		} else {
 			const res = await UserService.register(data);
 
 			if (res?.status === 'ERR') {
 				message.warning(res?.message);
+				return;
 			}
 			if (res?.status === 'OK') {
 				setIdUser(res.data._id);
@@ -44,6 +52,7 @@ const RegisterPage = () => {
 			message.warning(
 				'Hiện tại hệ thống chỉ hỗ trợ 2 loại cửa hàng là cafe và shop vui lòng chọn lại'
 			);
+			return;
 		} else {
 			const res = await StoreService.createStore(data);
 			if (res?.status === 'OK') {

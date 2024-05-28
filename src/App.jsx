@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { privateRoutes, routes } from './router/index';
 import DefaultLayout from './Layouts/DefaultLayout';
 import * as UserService from './services/user';
+import * as StoreService from './services/store';
 import { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { jwtDecode } from 'jwt-decode';
@@ -16,10 +17,14 @@ function App() {
 	const handleGetDetailUser = async (id, token) => {
 		const refreshToken = JSON.parse(localStorage.getItem('refreshToken'));
 		const res = await UserService.getDetailUser(id, token);
+		const allStore = await StoreService.getAllStore();
+		const storeId = allStore.data.find(item => item.user === id);
+		console.log(storeId);
 
 		dispatch(
 			updatedUser({
 				...res?.data,
+				storeId: storeId._id,
 				accessToken: token,
 				refreshToken
 			})

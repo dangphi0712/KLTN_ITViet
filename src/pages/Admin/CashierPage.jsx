@@ -387,6 +387,7 @@ const CashierPage = () => {
 		const res = await UserService.logout();
 		if (res?.status === 'OK') {
 			dispatch(resetUser());
+			dispatch(resetOrder());
 			localStorage.removeItem('accessToken');
 			localStorage.removeItem('refreshToken');
 			navigate(config.routes.login);
@@ -409,7 +410,15 @@ const CashierPage = () => {
 	};
 
 	const handleCreateOrder = () => {
-		if (order && order.orderItems && order.orderItems.length > 0) {
+			if (priceTotalMemo < 0) {
+				message.warning('Số tiền thành toán không hợp lệ');
+				return;
+			} else if (
+				order &&
+				order.orderItems &&
+				order.orderItems.length > 0 &&
+				priceTotalMemo > 0
+			) {
 			const params = {
 				orderItems: order?.orderItems,
 				itemPrice: priceMemo,
@@ -551,7 +560,6 @@ const CashierPage = () => {
 														handleAddOrder({
 															name: item.name,
 															amount: 1,
-															image: item.image,
 															price: item.price,
 															id: item._id
 														})
